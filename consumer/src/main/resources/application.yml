@@ -1,0 +1,24 @@
+logging:
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+# springboot整合rabbitmq 相关配置
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        prefetch: 1 #每次只能获取一个消息，处理完才能获取下一个消息
+        acknowledge-mode: auto # 消费者自动确认消息
+        retry:
+          enabled: true # 开启消费者失败重试
+          initial-interval: 1000ms # 初始的失败等待时长为1s
+          multiplier: 1 # 下次失败等待时长倍数，下次等待时长 = multiplier * last-interval
+          max-attempts: 3 # 最大重试次数
+          stateless: true # true 无状态; false 有状态，如果业务中包含事务，需要设置为false
+    host: 192.168.88.130
+    port: 5672
+    virtual-host: /test
+    username: test
+    password: 123456
+
+

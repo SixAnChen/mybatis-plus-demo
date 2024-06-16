@@ -1,0 +1,20 @@
+logging:
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+spring:
+  rabbitmq:
+    host: 192.168.88.130 # 服务器地址
+    port: 5672 # 服务器端口
+    virtual-host: /test # rabbitmq 虚拟主机
+    username: test #  登录用户名
+    password: 123456 #  登录密码
+    connection-timeout: 1s #  连接超时时间
+    template:
+      retry:
+        enabled: true #  开启生产者重试机制
+        multiplier: 2 #   重试延迟倍数
+    publisher-confirm-type: none
+    publisher-returns: false
+
+
